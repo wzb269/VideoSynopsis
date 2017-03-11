@@ -17,6 +17,8 @@
 #include "opencv2/videoio.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/video/background_segm.hpp"
+#include "opencv2/bgsegm.hpp"
 
 using namespace std;
 using namespace cv;
+using namespace bgsegm;

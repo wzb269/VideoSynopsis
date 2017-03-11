@@ -9,7 +9,10 @@ Preprocesser::~Preprocesser()
 {
 }
 
-VideoCapture Preprocesser::preprocess(VideoCapture sourceVideoCapture)
+Mat Preprocesser::preprocess(Mat frame)
 {
-	return sourceVideoCapture;
+	Mat out_frame;
+	//GaussianBlur
+	GaussianBlur(frame, out_frame, Size(3, 3), 0, 0);
+	return out_frame;
 }

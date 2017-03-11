@@ -71,8 +71,8 @@ int main(int argc, char** argv)
 	}
 	namedWindow("video", 1);
 	namedWindow("segmented", 1);
-	Ptr<BackgroundSubtractorMOG2> bgsubtractor = createBackgroundSubtractorMOG2();
-	bgsubtractor->setVarThreshold(10);
+	//http://docs.opencv.org/trunk/d7/df6/classcv_1_1BackgroundSubtractor.html
+	Ptr<BackgroundSubtractorGMG> bgsubtractor = createBackgroundSubtractorGMG();
 	for (;;)
 	{
 		cap >> tmp_frame;
@@ -93,4 +93,3 @@ int main(int argc, char** argv)
 	}
 	return 0;
 }
-

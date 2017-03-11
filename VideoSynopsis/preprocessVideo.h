@@ -6,7 +6,7 @@ class  Preprocesser
 public:
 	 Preprocesser();
 	~ Preprocesser();
-	VideoCapture preprocess(VideoCapture sourceVideoCapture);
+	Mat preprocess(Mat frame);
 private:
 
 };
