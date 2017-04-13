@@ -2,6 +2,8 @@
 //
 
 #include "stdafx.h"
+#include "peopleTracking.h"
+#include "multiObjectTracking.h"
 
 // Standard include files
 #include <opencv2/core/utility.hpp>
@@ -37,6 +39,7 @@ static void onMouse(int event, int x, int y, int, void*)
 			startSelection = true;
 			boundingBox.x = x;
 			boundingBox.y = y;
+			paused = true;
 			break;
 		case EVENT_LBUTTONUP:
 			//sei with and height of the bounding box
@@ -76,6 +79,9 @@ static void help()
 }
 
 int main(int argc, char** argv) {
+	//multiObjectTracking();
+	//peopleTracking(argc, argv);
+	//return 0;
 	CommandLineParser parser(argc, argv, keys);
 
 	String tracker_algorithm = parser.get<String>(0);
@@ -130,12 +136,13 @@ int main(int argc, char** argv) {
 	}
 
 	Mat frame;
-	paused = true;
+	paused = false;
 	namedWindow("Tracking API", 1);
 	setMouseCallback("Tracking API", onMouse, 0);
 
 	//instantiates the specific Tracker
 	Ptr<Tracker> tracker = Tracker::create(tracker_algorithm);
+
 	if (tracker == NULL)
 	{
 		cout << "***Error in the instantiation of the tracker...***\n";
@@ -164,15 +171,14 @@ int main(int argc, char** argv) {
 	{
 		if (!paused)
 		{
-			if (initialized) {
+			if (!initialized && !selectObject) {
 				cap >> frame;
 				if (frame.empty()) {
 					break;
 				}
 				frame.copyTo(image);
 			}
-
-			if (!initialized && selectObject)
+			else if (!initialized && selectObject)
 			{
 				//initializes the tracker
 				if (!tracker->init(frame, boundingBox))
@@ -184,6 +190,11 @@ int main(int argc, char** argv) {
 			}
 			else if (initialized)
 			{
+				cap >> frame;
+				if (frame.empty()) {
+					break;
+				}
+				frame.copyTo(image);
 				//updates the tracker
 				if (tracker->update(frame, boundingBox))
 				{

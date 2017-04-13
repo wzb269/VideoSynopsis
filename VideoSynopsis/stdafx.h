@@ -25,6 +25,9 @@
 #include <opencv2/video.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
+#include <opencv2/bgsegm.hpp>
+#include <opencv2/tracking.hpp>
 
 using namespace cv;
 using namespace std;
+using namespace bgsegm;

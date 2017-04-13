@@ -36,6 +36,18 @@
     <ClInclude Include="videoIO.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="multipleObjectTracking.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="similarityCalculator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mergeMovingObjects.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -51,6 +63,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="videoIO.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="multipleObjectTracking.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="similarityCalculator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mergeMovingObjects.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

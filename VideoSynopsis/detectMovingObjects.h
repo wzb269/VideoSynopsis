@@ -7,16 +7,18 @@ class MovingObjects
 public:
 	MovingObjects();
 	~MovingObjects();
-	vector<CvObject> detectMovingObjects(Mat frame);
+	vector<Rect> detectMovingObjects(Mat frame);
 	void setLearningRate(double learningRate);
-	void setMinArea(double area);
+	void setMinArea(int area);
 private:
 	static double calThreshold(const Mat& img);
-	vector<CvObject> refineSegments(const Mat& img, Mat& mask, Mat& dst);
-	vector<Rect> refineObjects(const vector<vector<Point>>&);
+	static void postProcessVideo(const Mat& img);
+	static void abolishInsidedBox(const vector<Rect>&, vector<Rect>&);
+	void refineSegments(const Mat& img, Mat& mask, Mat& dst, vector<Rect>& boundRect);
+	void refineObjects(const vector<vector<Point>>&, vector<Rect>& boundRect);
 
 	double learningRate;
-	double minArea;
+	int minArea;
 	Mat bgmask;
-	Ptr<BackgroundSubtractorKNN> bgsubtractor;
+	Ptr<BackgroundSubtractorCNT> bgsubtractor;
 };
